@@ -1,14 +1,2 @@
-# Screenshotter
-A library to take screenshots without root access
+支持5.0之上手机一键截屏
 
-## Usage - 
-```
-Screenshotter.getInstance()
-             .setSize(720, 1280)
-             .takeScreenshot(this, resultCode, data, new ScreenshotCallback() {
-                 @Override
-                 public void onScreenshot(Bitmap bitmap) {
-                     //Enjoy your bitmap
-                 }
-             });
-```
