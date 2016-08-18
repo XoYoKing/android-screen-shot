@@ -1,4 +1,4 @@
-package com.bearapp.screenshotter;
+package com.bearapp.screenshot;
 
 import android.app.Application;
 import android.content.Intent;

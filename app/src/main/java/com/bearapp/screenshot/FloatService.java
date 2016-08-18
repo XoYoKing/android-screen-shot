@@ -1,4 +1,4 @@
-package com.bearapp.screenshotter;
+package com.bearapp.screenshot;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -41,7 +41,7 @@ public class FloatService extends Service {
         Log.d(TAG, "FloatService onCreate");
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.ic_upload);
+        imageView.setImageResource(R.drawable.ic_screenshot);
         params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,

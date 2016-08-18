@@ -1,4 +1,4 @@
-package com.bearapp.screenshotter;
+package com.bearapp.screenshot;
 
 import android.Manifest;
 import android.content.Context;
@@ -33,6 +33,10 @@ public class TakeScreenShotActivity extends AppCompatActivity {
     private static final int REQUEST_MEDIA_PROJECTION = 1;
 
     private static final int REQUEST_EXTERNAL_STORAGE = 2;
+
+    private static final String SCREENSHOTS_DIR_NAME = "Screenshots";
+
+
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -74,15 +78,19 @@ public class TakeScreenShotActivity extends AppCompatActivity {
                                 @Override
                                 public void onScreenshot(Bitmap bitmap) {
                                     Log.d(TAG, "onScreenshot called");
-                                    Toast.makeText(TakeScreenShotActivity.this, "Screenshot Captured!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(TakeScreenShotActivity.this, getString(R.string.screenshot_captured), Toast.LENGTH_SHORT).show();
 
                                     Date now = new Date();
-                                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss", Locale.ENGLISH);
+                                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss", Locale.ENGLISH);
                                     String fileName = simpleDateFormat.format(now) + ".jpg";
-                                    String filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + fileName;
+                                    File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), SCREENSHOTS_DIR_NAME);
+                                    if (!folder.exists()) {
+                                        folder.mkdirs();
+                                    }
+                                    File file = new File(folder, fileName);
                                     FileOutputStream out = null;
                                     try {
-                                        out = new FileOutputStream(filePath);
+                                        out = new FileOutputStream(file);
                                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                                     } catch (FileNotFoundException e) {
                                         e.printStackTrace();

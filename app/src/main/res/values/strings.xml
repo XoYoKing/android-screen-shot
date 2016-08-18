@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Screen Shot</string>
+    <string name="app_name">截屏</string>
+    <string name="screenshot_captured">截屏成功！</string>
 </resources>
